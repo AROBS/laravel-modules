@@ -1,0 +1,19 @@
+<?php namespace {{ namespace }};
+
+use Laracasts\Commander\CommandHandler;
+use Laracasts\Commander\BaseCommand;
+
+class {{ name }} implements CommandHandler {
+
+    /**
+     * Handle the command.
+     *
+     * @param BaseCommand $command
+     * @return void
+     */
+    public function handle(BaseCommand $command)
+    {
+        //TODO - add business logic here
+    }
+
+}

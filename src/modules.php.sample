@@ -1,0 +1,19 @@
+<?php
+
+/**
+* Rename and move this file into config/modules.php file
+**/
+
+return [
+
+	'modules' => [
+        'Dummy' => [
+            'name' => 'Dummy',
+            'slug' => 'Dummy',
+            'description' => 'This is the description for the Dummy module.',
+            'enabled' => true,
+            'version' => '1.0'
+        ],
+    ]
+
+];

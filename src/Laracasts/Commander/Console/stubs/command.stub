@@ -1,0 +1,46 @@
+<?php namespace {{ namespace }};
+
+use Laracasts\Commander\BaseCommand;
+
+class {{ name }} extends BaseCommand {
+
+    {{# properties }}
+    /**
+     * @var mixed
+     */
+    protected ${{ . }};
+
+    {{/ properties}}
+
+    /**
+     * @param mixed
+     */
+    public function __construct($data=null)
+    {
+        if($data){
+            $this->setInput($data);
+        }
+    }
+
+    {{# properties }}
+    {{%FILTERS}}
+    /**
+     * @return mixed
+     */
+    public function get{{ . | case.ucfirst }}(){
+        return $this->{{ . }};
+    }
+
+    /**
+     * @return mixed
+     */
+    public function set{{ . | case.ucfirst }}($data){
+        $this->{{ . }} = $data;
+        return $this;
+    }
+
+    {{/ properties}}
+
+
+
+}

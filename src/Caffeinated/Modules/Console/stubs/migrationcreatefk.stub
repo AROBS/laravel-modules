@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class {{migrationName}} extends Migration
+{
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('{{table}}', function(Blueprint $table)
+		{
+		    DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+			$table->increments('id');
+			$table->timestamps();
+
+			DB::statement('SET FOREIGN_KEY_CHECKS=1');
+		});
+	}
+
+	/**
+	 * Reverse the migration.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+	    DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+		Schema::drop('{{table}}');
+
+		DB::statement('SET FOREIGN_KEY_CHECKS=1');
+	}
+}
