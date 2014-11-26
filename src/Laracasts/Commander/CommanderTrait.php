@@ -14,7 +14,7 @@ trait CommanderTrait {
      * @param  array $decorators
      * @return mixed
      */
-    protected function execute($command, array $input = null)
+    protected function execute($command, array $input = null, $decorators = [])
     {
         if (!is_object($command))
         {
@@ -30,6 +30,21 @@ trait CommanderTrait {
         {
             $message = "Command handler [$handler] does not exist.";
             throw new HandlerNotRegisteredException($message);
+        }
+
+        //everything loos great, execute decorators
+        foreach ($decorators as $className)
+        {
+            $instance = App::make($className);
+
+            if ( ! $instance instanceof CommandBus)
+            {
+                $message = 'The class to decorate must be an implementation of Laracasts\Commander\CommandBus';
+
+                throw new InvalidArgumentException($message);
+            }
+
+            $instance->execute($command);
         }
 
         return App::make($handler)->handle($command);
